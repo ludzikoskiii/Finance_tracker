@@ -19,12 +19,13 @@ header{
      top: 0;
      z-index: 1000;
      background-color: #DEE6EB;
-     
+     width: 95%;
 }
 .header_nav{
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
+    
 
     display: flex;
     align-items: center;
