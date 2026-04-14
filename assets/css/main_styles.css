@@ -232,7 +232,7 @@ header{
     transform: scale(1.02);
 }
 .hero_creator_block{
-    display: flex;
+    float: left;
     
 }
 .hero_creator_text{
