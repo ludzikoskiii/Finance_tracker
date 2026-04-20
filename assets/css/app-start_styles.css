@@ -14,6 +14,9 @@ body{
 body.sb-expanded{
     --sb-width: 12.5rem;
 }
+.app-sidebar{
+
+}
 p{
     margin-bottom: 1.5rem;
     font-weight: bold;

@@ -149,7 +149,8 @@ header{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    background: linear-gradient(135deg, #e9e9e9, #dcdcdc);
+    --background_color: linear-gradient(135deg, #e9e9e9, #dcdcdc);;
+    background: var(--background_color);
     margin: 10px;
     border-radius: 20px;
     overflow: hidden;
@@ -238,6 +239,19 @@ header{
 }
 .hero_creator_text{
     font-size: 1em;
+}
+.footer{
+    
+}
+.footer-inside{
+    display: grid;
+    align-items: center;
+    justify-content: space-between;
+    --background_color: linear-gradient(135deg, #e9e9e9, #dcdcdc);;
+    background: var(--background_color);
+    margin: 10px;
+    border-radius: 20px;
+    overflow: hidden;
 }
 .glass{
     background: rgba(255, 255, 255, 0.1); 
