@@ -1,3 +1,7 @@
+:root{
+    --background-color-desc: linear-gradient(135deg, #d5d5d5, #e8e2e2);
+    --creator-block-color: #8fb0b4;
+}
 *{
     margin: 0;
     padding: 0;
@@ -9,6 +13,7 @@ body{
     font-weight: 800;
     background: #DEE6EB;
     line-height: 1.7;
+    margin: 2rem;
     
 }
 body.sb-expanded{
@@ -29,7 +34,7 @@ aside{
     inset: 0 auto 0 0;
     padding: 1rem;
     width: var(--sb-width);
-    background-image: linear-gradient(#90c3fd, #ba71ff, #ff71b8);
+    background-image: var(--background-color-desc);
 }
 nav{
     height: 100%;
@@ -43,6 +48,7 @@ nav ul{
     flex-flow: column;
     gap: 0.25rem;
 }
+
 nav li:last-child{
     margin-top: auto;
 
@@ -71,8 +77,11 @@ nav a.active,
 nav a:hover,
 nav a:focus-visible{
     outline: none;
-    color: #ba71ff;
     background-color: #fff;
+}
+.header_text{
+    font-size: 0;
+
 }
 nav a span{
     font-size: 0.875rem;
@@ -82,6 +91,9 @@ nav a span{
 .sb-expanded nav a span{
     opacity: 1;
     visibility: visible;
+}
+.sb-expanded .header_text{
+        font-size: 1.25rem;
 }
 .sb-expanded aside .bx-chevrons-right{
     rotate: 180deg;
@@ -94,6 +106,8 @@ main{
     margin-left: 5rem;
     padding: 1rem 2rem;
     transition: margin-left 0.5 ease-in-out;
+    padding: 2rem;
+    
 }
 @media (min-width: 768px){
     main{
