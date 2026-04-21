@@ -1,4 +1,7 @@
-
+:root{
+    --background-color-desc: linear-gradient(135deg, #e9e9e9, #dcdcdc);
+    --creator-block-color: #5FDAE9;
+}
 body{
     font-family: 'Google sans', sans-serif;
     padding: 0;
@@ -38,6 +41,7 @@ header{
     font-size: 15px;
     transition: font-size 0.3s ease;
     border-color: transparent;
+
     background-color: #DEE6EB;
     font-weight: bold;
     margin-left: auto;
@@ -79,7 +83,8 @@ header{
     max-width: 1400px;
     margin: 0 auto;
     border-radius: 24px;
-    background-color: #f0f3f5;
+    --hero_background_color: #f0f3f5;
+    background-color: var(--hero_background_color);
     padding: 60px;
 }
 .hero_top{
@@ -149,8 +154,7 @@ header{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    --background_color: linear-gradient(135deg, #e9e9e9, #dcdcdc);;
-    background: var(--background_color);
+    background: var(--background-color-desc);
     margin: 10px;
     border-radius: 20px;
     overflow: hidden;
@@ -212,17 +216,18 @@ header{
 }
 .hero_creator_image{
     width: 10em;
-    border-radius: 50%;
+    border-radius: 3rem;
     float: left;
+    padding: 1rem;
 }
 .cursor{
     cursor: pointer;
 }
 .html{
-    --creator_block_color: #5FDAE9;
+    
 }
 .wrapper {
-  border: 3px solid var(--creator_block_color);
+  border: 3px solid var(--creator-block-color);
   border-radius: 10px;
   margin-right:10px;
   padding: 1rem;
@@ -244,14 +249,58 @@ header{
     
 }
 .footer-inside{
-    display: grid;
-    align-items: center;
-    justify-content: space-between;
-    --background_color: linear-gradient(135deg, #e9e9e9, #dcdcdc);;
-    background: var(--background_color);
-    margin: 10px;
+    background: var(--background-color-desc);
+   
     border-radius: 20px;
     overflow: hidden;
+    padding: 2rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+
+}
+.footer-element1-header{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.icons{
+    font-size: 2.5rem;
+}
+.footer-title{
+    font-size: 3rem;
+}
+.footer-href{
+    text-decoration: none;
+    color: #000;
+    transition: font-size 0.2s ease-in-out;
+}
+
+.footer-href:hover{
+    font-size: 3.2rem;
+}
+.footer-href-text{
+    font-size: 1.8rem;
+    
+}
+.footer-element1-text{
+    color: gray;
+}
+.footer-logo{
+    width: 20rem;
+    height: auto;
+    border-radius: 50%;
+    
+}
+.footer-element1-head-text{
+    display: flex;
+    justify-content: flex-start;
+
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 1rem auto 1rem auto;
+
 }
 .glass{
     background: rgba(255, 255, 255, 0.1); 
