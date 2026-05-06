@@ -109,6 +109,15 @@ main{
     padding: 2rem;
     
 }
+.sidebar-logo{
+    width: 2.5rem;
+    height: auto;
+}
+.sidebar-brand{
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+}
 @media (min-width: 768px){
     main{
         margin-left: var(--sb-width);
