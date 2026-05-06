@@ -1,7 +1,6 @@
-const btnRegister = document.getElementById('btn-register');
-
-btnRegister.addEventListener("click",async (e) => {
-    e.preventdefault();
+const loginForm = document.getElementById('login-form');
+loginForm.addEventListener("submit",async (e) => {
+    e.preventDefault();
     const loginName = document.getElementById('login-name').value;
     const loginEmail = document.getElementById('login-email').value;
     const loginPassword = document.getElementById('login-password').value;
@@ -12,7 +11,7 @@ btnRegister.addEventListener("click",async (e) => {
         email: loginEmail,
         haslo: loginPassword
     }
-    await fetch("app_register.php", {
+   const response = await fetch("http://localhost/Finance_tracker-main/assets/php/app_register.php", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -20,5 +19,6 @@ btnRegister.addEventListener("click",async (e) => {
         body: JSON.stringify(user)
         
     });
-    
+    const data = await response.json();
+    console.log(data);
 });
