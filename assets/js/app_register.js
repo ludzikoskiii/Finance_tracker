@@ -5,20 +5,53 @@ loginForm.addEventListener("submit",async (e) => {
     const loginEmail = document.getElementById('login-email').value;
     const loginPassword = document.getElementById('login-password').value;
     const loginPasswordConfirm = document.getElementById('login-confirm-password').value;
-    
+    if(!loginEmail){
+        console.log("Brak adresu e-mail");
+        return;
+    }
     const user = {
         imie: loginName,
         email: loginEmail,
         haslo: loginPassword
     }
-   const response = await fetch("http://localhost/Finance_tracker-main/assets/php/app_register.php", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(user)
-        
-    });
-    const data = await response.json();
-    console.log(data);
+    
+    //Sprawdzanie czy podany e-mail istnieje
+    try{
+        const responseGet = await fetch(`http://localhost/Finance_tracker-main/assets/php/app_register.php?email=${encodeURIComponent(loginEmail)}`);
+        const czyZawiera = await responseGet.json()
+        console.log(czyZawiera.exists);
+        if(czyZawiera.exists){
+            console.log("Uzytkownik o podanym adresie e-mail juz istnieje");
+            return;
+        }
+        if(czyZawiera.success === false){
+            console.log(czyZawiera.message);
+            return;
+        }
+}   
+    catch(err){
+        console.log(err)
+    }
+    //Dodawanie uzytkownika
+    try {
+        const responsePost = await fetch(
+            "http://localhost/Finance_tracker-main/assets/php/app_register.php",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(user)
+            }
+        );
+
+        const data = await responsePost.json();
+
+        console.log(data);
+
+    }
+    catch(err){
+        console.log(err);
+    }
+    
 });

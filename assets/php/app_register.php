@@ -1,31 +1,79 @@
 <?php 
 header("Content-Type: application/json");
-$dsn = "mysql:host=localhost;dbname=bazatest;charset=utf8mb4";
+$dsn = "mysql:host=localhost;dbname=finance_tracker;charset=utf8mb4";
 $user = "root";
 $password = "";
-
 try{
-    $pdo = new PDO($dsn, $user, $password);
+$pdo = new PDO($dsn, $user, $password);
+$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+$method = $_SERVER["REQUEST_METHOD"];
+if($method == "GET"){
+     
+     if(!isset($_GET["email"])){
+        echo json_encode([
+            "success" => false,
+            "message" => "Nie podano adresu e-mail"
+        ]);
+     }
+     $email = $_GET["email"];
+    $stmt=$pdo->prepare("SELECT * FROM uzytkownicy WHERE email = :email");
+    $stmt->execute(['email' => $email]);
+
+    $user = $stmt->fetch();
+
+    echo json_encode([
+        "exists" => $user ? true : false
+    ]);
+    exit;
+}
+if($method == "POST"){
+
+    
     //ustawienie trybu bledow
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-}catch (PDOException $e){
-    echo "Błąd połączenia: " . $e->getMessage();
-    exit;
-}
-$data = json_decode(file_get_contents("php://input"), true);
-if(!$data){
-    echo "Brak danych";
-    exit;
-}
-$imie = $data["imie"];
-$email = $data["email"];
-$haslo = $data["haslo"];
+     $data = json_decode(file_get_contents("php://input"), true);
+     $imie = $data["imie"];
+     $email = $data["email"];
+     $haslo = $data["haslo"];    
+     if(empty($email)){
+        echo json_encode([
+            "success" => false,
+            "message" => "Email jest wymagany"
+        ]);
 
-$stmt=$pdo->prepare("INSERT INTO tabela (imie,email,haslo) VALUES (:imie,:email,:haslo)");
+        exit;
+     }
+     if(!$data){
+        echo json_encode([
+            "success" => false,
+            "message" => "Brak danych"
+        ]);
+        exit;
+    }
+     
+$stmt=$pdo->prepare("INSERT INTO uzytkownicy (imie,email,haslo_hash,rola,data_rejestracji,aktywny) VALUES (:imie,:email,:haslo_hash,:rola,:data_rejestracji,:aktywny)");
 $stmt->execute([
     'imie' => $imie,
     'email' => $email,
-    'haslo' => $haslo
+    'haslo_hash' => $haslo,
+    'rola' => 'user',
+    'data_rejestracji' => date("Y-m-d H:i:s"),
+    'aktywny' => 1
+
 ]);
-echo json_encode(["message" => "Rejestracja udana"]);
+echo json_encode([
+        "success" => true,
+        "message" => "Rejestracja udana"
+    ]);
+    exit;
+}catch (PDOException $e){
+
+    echo json_encode([
+     "success" => false,
+     "error" => $e->getMessage()
+     ]);
+}
+}
+
+
 ?>
