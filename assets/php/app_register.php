@@ -1,11 +1,13 @@
 <?php 
-header("Content-Type: application/json");
+header('Content-Type: application/json');
+
+try{
 $dsn = "mysql:host=localhost;dbname=finance_tracker;charset=utf8mb4";
 $user = "root";
 $password = "";
-try{
-$pdo = new PDO($dsn, $user, $password);
-$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+$pdo = new PDO($dsn, $user, $password,[
+    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
+]);
 $method = $_SERVER["REQUEST_METHOD"];
 if($method == "GET"){
      
@@ -30,7 +32,7 @@ if($method == "POST"){
 
     
     //ustawienie trybu bledow
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    // $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
      $data = json_decode(file_get_contents("php://input"), true);
      $imie = $data["imie"];
      $email = $data["email"];
@@ -66,14 +68,16 @@ echo json_encode([
         "message" => "Rejestracja udana"
     ]);
     exit;
-}catch (PDOException $e){
+}
+}
+catch (PDOException $e){
 
     echo json_encode([
      "success" => false,
      "error" => $e->getMessage()
      ]);
 }
-}
+
 
 
 ?>

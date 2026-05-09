@@ -14,25 +14,35 @@ loginForm.addEventListener("submit",async (e) => {
         email: loginEmail,
         haslo: loginPassword
     }
-    
-    //Sprawdzanie czy podany e-mail istnieje
+    async function getData() {
+       const response = await fetch('http://localhost/Finance_tracker-main/assets/php/app_register.php'); 
+        const data = await response.text();
+
+        console.log(data);
+    }
+    getData();
+    //Sprawdzenie czy uzytkownik o podanym adresie e-mail juz istnieje
     try{
+    function checkEmailExists() {
         const responseGet = await fetch(`http://localhost/Finance_tracker-main/assets/php/app_register.php?email=${encodeURIComponent(loginEmail)}`);
-        const czyZawiera = await responseGet.json()
-        console.log(czyZawiera.exists);
+        const czyZawiera = await responseGet.json();
+       
         if(czyZawiera.exists){
             console.log("Uzytkownik o podanym adresie e-mail juz istnieje");
             return;
         }
-        if(czyZawiera.success === false){
+        if(czyZawiera.success){
             console.log(czyZawiera.message);
             return;
         }
+    }
+    checkEmailExists();
 }   
     catch(err){
-        console.log(err)
+        console.log(err);
+        return;
     }
-    //Dodawanie uzytkownika
+    // Dodawanie uzytkownika
     try {
         const responsePost = await fetch(
             "http://localhost/Finance_tracker-main/assets/php/app_register.php",
@@ -52,6 +62,7 @@ loginForm.addEventListener("submit",async (e) => {
     }
     catch(err){
         console.log(err);
+        return;
     }
     
 });
