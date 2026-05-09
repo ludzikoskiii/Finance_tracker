@@ -13,9 +13,10 @@ loginForm.addEventListener("submit",async (e) => {
         password: loginPassword,
         confirmPassword: loginPasswordConfirm
     }
-    console.log(validateRegister(user));
-    if(Object.keys(validateRegister(user).length === 0)){
-        console.log("Prawidlowo")
+    console.log(validateRegister(user))
+    console.log(Object.keys(validateRegister(user)).length)
+    if(!(Object.keys(validateRegister(user)).length === 0)){
+        console.log("Falsz")
     }
     //Sprawdzenie czy uzytkownik o podanym adresie e-mail juz istnieje
     try{
