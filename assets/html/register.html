@@ -11,7 +11,8 @@
          <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=account_circle" />
          <link rel="stylesheet" href="../css/login_styles.css">
         <link rel="shortcut icon" href="../../img/logo_no_bg.png">
-        <script defer src="../js/app_register.js"></script>
+        <script defer type="module" src="../js/app_register-Validation.js"></script>
+        <script defer type="module" src="../js/app_register-Fetch.js"></script>
      </head>
 <body>
     <section class="login-body">
@@ -20,14 +21,22 @@
         <p class="login-underTitle">Already have an account? <a href="login.html">Log in</a></p>
        </div>
         <form action="" id="login-form" class="login-form">
+            <div class="block-name">
             <p class="login-text full-width">Imie</p>
             <input type="text" id="login-name" class="input-size full-width">
+            </div>
+            <div class="block-email">
             <p class="login-text full-width">Email</p>
             <input type="email" id="login-email" class="input-size full-width">
+            </div>
+            <div class="block-password">
             <p class="login-text full-width">Password</p>
             <input type="password" id="login-password" class="input-size full-width">
+            </div>
+            <div class="block-confirm">
             <p class="login-text full-width">Confirm Password</p>
             <input type="password" id="login-confirm-password" class="input-size full-width">
+            </div>
            
             <div class="login-btns full-width">
                 <button type="submit" id="btn-register" class="login-btn">Sign up</button>

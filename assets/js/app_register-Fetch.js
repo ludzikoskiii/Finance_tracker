@@ -1,3 +1,4 @@
+import { validateRegister } from "../js/app_register-Validation.js";
 const loginForm = document.getElementById('login-form');
 loginForm.addEventListener("submit",async (e) => {
     e.preventDefault();
@@ -5,25 +6,20 @@ loginForm.addEventListener("submit",async (e) => {
     const loginEmail = document.getElementById('login-email').value;
     const loginPassword = document.getElementById('login-password').value;
     const loginPasswordConfirm = document.getElementById('login-confirm-password').value;
-    if(!loginEmail){
-        console.log("Brak adresu e-mail");
-        return;
-    }
+    
     const user = {
-        imie: loginName,
+        name: loginName,
         email: loginEmail,
-        haslo: loginPassword
+        password: loginPassword,
+        confirmPassword: loginPasswordConfirm
     }
-    async function getData() {
-       const response = await fetch('http://localhost/Finance_tracker-main/assets/php/app_register.php'); 
-        const data = await response.text();
-
-        console.log(data);
+    console.log(validateRegister(user));
+    if(Object.keys(validateRegister(user).length === 0)){
+        console.log("Prawidlowo")
     }
-    getData();
     //Sprawdzenie czy uzytkownik o podanym adresie e-mail juz istnieje
     try{
-    function checkEmailExists() {
+    async function checkEmailExists() {
         const responseGet = await fetch(`http://localhost/Finance_tracker-main/assets/php/app_register.php?email=${encodeURIComponent(loginEmail)}`);
         const czyZawiera = await responseGet.json();
        

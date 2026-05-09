@@ -34,9 +34,9 @@ if($method == "POST"){
     //ustawienie trybu bledow
     // $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
      $data = json_decode(file_get_contents("php://input"), true);
-     $imie = $data["imie"];
+     $imie = $data["name"];
      $email = $data["email"];
-     $haslo = $data["haslo"];    
+     $haslo = $data["password"];    
      if(empty($email)){
         echo json_encode([
             "success" => false,
