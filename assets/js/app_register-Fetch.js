@@ -6,7 +6,8 @@ loginForm.addEventListener("submit",async (e) => {
     const loginEmail = document.getElementById('login-email').value;
     const loginPassword = document.getElementById('login-password').value;
     const loginPasswordConfirm = document.getElementById('login-confirm-password').value;
-    
+    const blockName = document.querySelector('.block-0');
+    console.log(blockName);
     const user = {
         name: loginName,
         email: loginEmail,
@@ -16,7 +17,20 @@ loginForm.addEventListener("submit",async (e) => {
     console.log(validateRegister(user))
     console.log(Object.keys(validateRegister(user)).length)
     if(!(Object.keys(validateRegister(user)).length === 0)){
-        console.log("Falsz")
+        let arr = validateRegister(user);
+    for(let i = 0;i < (Object.keys(validateRegister(user)).length);i++){
+        for (let key in arr){
+            if(arr[key]){
+
+                    const el = document.createElement('p');
+                    el.innerText = `${arr[key]}`;
+                    blockName.appendChild(el);
+                    console.log(i);
+                }
+                
+            }
+        }
+
     }
     //Sprawdzenie czy uzytkownik o podanym adresie e-mail juz istnieje
     try{
