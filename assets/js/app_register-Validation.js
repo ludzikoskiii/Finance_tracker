@@ -1,6 +1,10 @@
 
     export function validateRegister(data,errorsArr){
         const errorsTab = {
+            name: 1,
+            email: 1,
+            password: 1,
+            confirmPassword: 1,
     };
     const regextestEmail = (email) => {
         const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -18,6 +22,7 @@
         errorsArr.blockName1.appendChild(el);
     }else{
         errorsArr.blockName1.innerHTML = "";
+        errorsTab.name = 0;
     }
      if(!data.email || data.email.trim() === ""){
         errorsArr.blockEmail1.innerHTML = "";
@@ -31,6 +36,7 @@
         errorsArr.blockEmail1.appendChild(el);
      }else{
         errorsArr.blockEmail1.innerHTML = "";
+        errorsTab.email = 0;
     }
      if(!data.password || data.password.trim() === ""){
         errorsArr.blockPassword1.innerHTML = "";
@@ -45,6 +51,7 @@
      }
      else{
         errorsArr.blockPassword1.innerHTML = "";
+        errorsTab.password = 0;
     }
      if(!data.confirmPassword || data.confirmPassword.trim() === ""){
         errorsArr.blockConfirmPassword1.innerHTML = "";
@@ -59,7 +66,9 @@
      }
      else{
         errorsArr.blockConfirmPassword1.innerHTML = "";
+        errorsTab.confirmPassword = 0;
     }
+    // return errorsTab;
     }
    
     

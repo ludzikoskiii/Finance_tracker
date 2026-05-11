@@ -10,7 +10,6 @@ loginForm.addEventListener("submit",async (e) => {
     const blockEmail = document.querySelector('.block-1');
     const blockPassword = document.querySelector('.block-2');
     const blockConfirmPassword = document.querySelector('.block-3');
-    console.log(blockName);
     const user = {
         name: loginName,
         email: loginEmail,
@@ -31,11 +30,11 @@ loginForm.addEventListener("submit",async (e) => {
         const czyZawiera = await responseGet.json();
        
         if(czyZawiera.exists){
-            console.log("Uzytkownik o podanym adresie e-mail juz istnieje");
-            return;
-        }
-        if(czyZawiera.success){
-            console.log(czyZawiera.message);
+           errorsArr.blockEmail1.innerHTML = "";
+              let el = document.createElement('p');
+                el.innerText = "An account with this email already exists";
+                errorsArr.blockEmail1.appendChild(el);
+                czyZawiera.exists = false;
             return;
         }
     }
