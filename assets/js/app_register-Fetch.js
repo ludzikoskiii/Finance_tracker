@@ -7,6 +7,9 @@ loginForm.addEventListener("submit",async (e) => {
     const loginPassword = document.getElementById('login-password').value;
     const loginPasswordConfirm = document.getElementById('login-confirm-password').value;
     const blockName = document.querySelector('.block-0');
+    const blockEmail = document.querySelector('.block-1');
+    const blockPassword = document.querySelector('.block-2');
+    const blockConfirmPassword = document.querySelector('.block-3');
     console.log(blockName);
     const user = {
         name: loginName,
@@ -14,24 +17,13 @@ loginForm.addEventListener("submit",async (e) => {
         password: loginPassword,
         confirmPassword: loginPasswordConfirm
     }
-    console.log(validateRegister(user))
-    console.log(Object.keys(validateRegister(user)).length)
-    if(!(Object.keys(validateRegister(user)).length === 0)){
-        let arr = validateRegister(user);
-    for(let i = 0;i < (Object.keys(validateRegister(user)).length);i++){
-        for (let key in arr){
-            if(arr[key]){
-
-                    const el = document.createElement('p');
-                    el.innerText = `${arr[key]}`;
-                    blockName.appendChild(el);
-                    console.log(i);
-                }
-                
-            }
-        }
-
+    const errorsArr = {
+        blockName1: blockName,
+        blockEmail1: blockEmail,
+        blockPassword1: blockPassword,
+        blockConfirmPassword1: blockConfirmPassword,
     }
+    validateRegister(user,errorsArr);
     //Sprawdzenie czy uzytkownik o podanym adresie e-mail juz istnieje
     try{
     async function checkEmailExists() {
@@ -65,15 +57,11 @@ loginForm.addEventListener("submit",async (e) => {
                 body: JSON.stringify(user)
             }
         );
-
         const data = await responsePost.json();
-
         console.log(data);
-
     }
     catch(err){
         console.log(err);
         return;
     }
-    
 });

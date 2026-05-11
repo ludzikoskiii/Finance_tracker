@@ -1,36 +1,66 @@
 
-    export function validateRegister(data){
+    export function validateRegister(data,errorsArr){
         const errorsTab = {
     };
-    if(!data.name){
-        errorsTab.name = "Nie podano imienia";
+    const regextestEmail = (email) => {
+        const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return regexEmail.test(email);
     }
-    if(!data.email){
-        errorsTab.email = "Nie podano adresu e-mail";
+    if(!data.name || data.name.trim() === ""){
+        errorsArr.blockName1.innerHTML = "";
+        let el = document.createElement('p');
+        el.innerText = "No name entered";
+        errorsArr.blockName1.appendChild(el);
+    }else if(data.name.trim().length < 3 || data.name.trim().length > 15){
+        errorsArr.blockName1.innerHTML = "";
+        let el = document.createElement('p');
+        el.innerText = "The name should be between 3 and 15 letters long";
+        errorsArr.blockName1.appendChild(el);
+    }else{
+        errorsArr.blockName1.innerHTML = "";
     }
-    if(!data.password){
-        errorsTab.password = "Nie podano hasła";
+     if(!data.email || data.email.trim() === ""){
+        errorsArr.blockEmail1.innerHTML = "";
+       let el = document.createElement('p');
+        el.innerText = "No email address entered";
+        errorsArr.blockEmail1.appendChild(el);
+     }else if(!regextestEmail(data.email)){
+        errorsArr.blockEmail1.innerHTML = "";
+        let el = document.createElement('p');
+        el.innerText = "Invalid email address";
+        errorsArr.blockEmail1.appendChild(el);
+     }else{
+        errorsArr.blockEmail1.innerHTML = "";
     }
-    if(!data.confirmPassword){
-        errorsTab.confirmPassword = "Powtórz hasło";
+     if(!data.password || data.password.trim() === ""){
+        errorsArr.blockPassword1.innerHTML = "";
+         let el = document.createElement('p');
+        el.innerText = "No password address entered";
+        errorsArr.blockPassword1.appendChild(el);
+     }else if(data.confirmPassword != data.password){
+        errorsArr.blockPassword1.innerHTML = "";
+        let el = document.createElement('p');
+        el.innerText = "The passwords do not match";
+        errorsArr.blockPassword1.appendChild(el);
+     }
+     else{
+        errorsArr.blockPassword1.innerHTML = "";
     }
-    return errorsTab;
+     if(!data.confirmPassword || data.confirmPassword.trim() === ""){
+        errorsArr.blockConfirmPassword1.innerHTML = "";
+         let el = document.createElement('p');
+        el.innerText = "No confirm password entered";
+        errorsArr.blockConfirmPassword1.appendChild(el);
+     }else if(data.confirmPassword != data.password){
+        errorsArr.blockConfirmPassword1.innerHTML = "";
+        let el = document.createElement('p');
+        el.innerText = "The passwords do not match";
+        errorsArr.blockConfirmPassword1.appendChild(el);
+     }
+     else{
+        errorsArr.blockConfirmPassword1.innerHTML = "";
+    }
     }
    
     
-     // export function validateRegister(data){
-    //     const errorsTab = [];
-    // if(!data[0]){
-    //     errorsTab[0] = "Nie podano imienia";
-    // }
-    // if(!data[1]){
-    //     errorsTab[1] = "Nie podano adresu e-mail";
-    // }
-    // if(!data[2]){
-    //     errorsTab[2] = "Nie podano hasła";
-    // }
-    // if(!data[2]){
-    //     errorsTab[2] = "Powtórz hasło";
-    // }
-    // return errorsTab;
-    // }
+    
