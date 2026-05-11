@@ -67,6 +67,20 @@ body{
 .login-btn:hover{
     transform: scale(1.02);
 }
+.sign-btn{
+     border-radius: 24px;
+     height: 3rem;
+     font-weight: bold;
+     font-size: 1.5rem; 
+     transform: scale(1);
+     transition: 0.3s ease-in-out;
+    background-color:  #2093D6;
+    border-color: #2093D6;
+    margin: 2rem 0 2rem 0;
+    }
+.sign-btn:hover{
+    transform: scale(1.02);
+}
 
 .login-separator {
   display: flex;
@@ -149,6 +163,8 @@ input:checked + .slider:before {
 .full-width {
     width: 32rem;
 }
-
+.wrong{
+    color: red;
+}
 @media screen and (max-width:768px){  
-};
+}
