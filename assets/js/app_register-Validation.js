@@ -6,6 +6,7 @@
             password: 1,
             confirmPassword: 1,
     };
+    let isGood = true;
     const regextestEmail = (email) => {
         const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return regexEmail.test(email);
@@ -68,8 +69,16 @@
         errorsArr.blockConfirmPassword1.innerHTML = "";
         errorsTab.confirmPassword = 0;
     }
-    // return errorsTab;
+    
+     for(let key in errorsTab){
+        if(errorsTab[key] === 1){
+            isGood = false;
+            break;
+         }
+        }
+        return isGood;
     }
    
+
     
     

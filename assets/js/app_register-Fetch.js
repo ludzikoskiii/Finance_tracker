@@ -23,6 +23,8 @@ loginForm.addEventListener("submit",async (e) => {
         blockConfirmPassword1: blockConfirmPassword,
     }
     validateRegister(user,errorsArr);
+    if(validateRegister(user,errorsArr)){
+    
     //Sprawdzenie czy uzytkownik o podanym adresie e-mail juz istnieje
     try{
     async function checkEmailExists() {
@@ -63,4 +65,5 @@ loginForm.addEventListener("submit",async (e) => {
         console.log(err);
         return;
     }
+}
 });

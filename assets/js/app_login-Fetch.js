@@ -24,4 +24,7 @@ loginForm.addEventListener("submit",async (e) => {
         blockPassword1: blockPassword,
     }
     validateLogin(user,errorsArr);
+    if(validateLogin(user,errorsArr)){
+    
+    }
 });
