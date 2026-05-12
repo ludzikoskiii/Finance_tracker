@@ -57,7 +57,7 @@ $stmt=$pdo->prepare("INSERT INTO uzytkownicy (imie,email,haslo_hash,rola,data_re
 $stmt->execute([
     'imie' => $imie,
     'email' => $email,
-    'haslo_hash' => $haslo,
+    'haslo_hash' => password_hash($haslo, PASSWORD_DEFAULT),
     'rola' => 'user',
     'data_rejestracji' => date("Y-m-d H:i:s"),
     'aktywny' => 1
