@@ -1,10 +1,8 @@
 
     export function validateLogin(data,errorsArr){
-         const errorsTab = {
-            name: 1,
+         const errors = {
             email: 1,
             password: 1,
-            confirmPassword: 1,
     };
     let isGood = true;
     const regextestEmail = (email) => {
@@ -23,6 +21,7 @@
         errorsArr.blockEmail1.appendChild(el);
      }else{
         errorsArr.blockEmail1.innerHTML = "";
+        errors.email = 0;
     }
      if(!data.password || data.password.trim() === ""){
         errorsArr.blockPassword1.innerHTML = "";
@@ -32,15 +31,17 @@
      }
      else{
         errorsArr.blockPassword1.innerHTML = "";
+        errors.password = 0;
     }
-    for(let key in errorsTab){
-        if(errorsTab[key] === 1){
+    for(let key in errors){
+        if(errors[key] === 1){
             isGood = false;
             break;
          }
         }
-        return isGood;
+       return isGood;
     }
+     
    
     
     

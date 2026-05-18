@@ -65,5 +65,6 @@ loginForm.addEventListener("submit",async (e) => {
         console.log(err);
         return;
     }
-}
+}else{
+    console.log("Dane niepoprawne, nie można wysłać formularza");}
 });
