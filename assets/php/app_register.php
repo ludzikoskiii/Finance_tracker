@@ -29,14 +29,10 @@ if($method == "GET"){
     exit;
 }
 if($method == "POST"){
-
-    
-    //ustawienie trybu bledow
-    // $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
      $data = json_decode(file_get_contents("php://input"), true);
      $imie = $data["name"];
      $email = $data["email"];
-     $haslo = $data["password"];    
+     $haslo = password_hash($data["password"], PASSWORD_DEFAULT);    
      if(empty($email)){
         echo json_encode([
             "success" => false,
@@ -57,7 +53,7 @@ $stmt=$pdo->prepare("INSERT INTO uzytkownicy (imie,email,haslo_hash,rola,data_re
 $stmt->execute([
     'imie' => $imie,
     'email' => $email,
-    'haslo_hash' => password_hash($haslo, PASSWORD_DEFAULT),
+    'haslo_hash' =>  $haslo,
     'rola' => 'user',
     'data_rejestracji' => date("Y-m-d H:i:s"),
     'aktywny' => 1

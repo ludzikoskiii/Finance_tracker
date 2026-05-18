@@ -13,17 +13,26 @@
             ]);
            }
             $email = $_GET["email"];
-            $haslo_hash = $_GET["haslo_hash"];
+            $haslo_hash = password_hash($_GET["haslo_hash"], PASSWORD_DEFAULT);
             $stmt=$pdo->prepare("SELECT * FROM uzytkownicy WHERE email = :email AND haslo_hash = :haslo_hash");
             $stmt->execute([
                 ':email' => $email,
                 ':haslo_hash' => $haslo_hash
             ]);
             $user = $stmt->fetch(PDO::FETCH_ASSOC);
-
-            echo json_encode($user);
+            if(!password_verify($user['haslo_hash'], $haslo_hash)){
+                echo json_encode([
+                    "error" => true
+                ])
+            }
+            else{
+                echo json_encode($user);
+                $_SESSION['imie'] = $user['imie'];
+                $_SESSION['email'] = $user['email'];
+                $_SESSION['haslo_hash'] = $user['haslo_hash'];
+                header("Location: ../php/app_dashboard.php");
+            }
+            // $stmt->close();
+            // $pdo = null;
         }
-        // if($method == "POST"){
-        //     // if()
-        // }
 ?>  
