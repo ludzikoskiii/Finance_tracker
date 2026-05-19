@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Dashboard</title>
     <style>
      
         @import url('https://fonts.googleapis.com/css2?family=Boldonse&family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&family=Open+Sans:ital,wght@0,520;1,520&display=swap');
@@ -15,13 +15,8 @@
         <script type="module" defer src="../js/app_main.js"></script>
 </head>
 <body class="sb-expanded">
-    
-    <section class="app-sidebar">
-        
-        <aside>
+        <aside class="app-sidebar">
             <nav>
-                
-               
                 <ul>
                     <li>
                         <div class="sidebar-brand">
@@ -37,31 +32,31 @@
                           </a>
                     </li>
                     <li>
-                        <a href="">
+                        <a href="./app/app_finances.html">
                             <i class="bx bx-wallet"></i>
                             <span>My finances</span>
                         </a>
                     </li>
                     <li>
-                        <a href="">
+                        <a href="./app/app_family.html">
                             <i class="bx bx-home"></i>
                             <span>My family</span>
                         </a>
                     </li>
                     <li>
-                        <a href="">
+                        <a href="./app/app_accounts.html">
                             <i class="bx bx-user"></i>
                             <span>Accounts</span>
                         </a>
                     </li>
                     <li>
-                        <a href="">
+                        <a href="./app/app_more.html">
                             <i class="bx bx-grid-alt"></i>
                             <span>More</span>
                         </a>
                     </li>
                     <li>
-                        <a href="./app_settings.html" >
+                        <a href="./app/app_settings.html" >
                             <i class="bx bx-cog"></i>
                             <span>Settings</span>
                         </a>
@@ -69,25 +64,24 @@
                 </ul>
             </nav>
         </aside>
-
-       
-    </section>
      <main>
             <div id="welcome-user">My Finances</div>
-            <p>Welcome to your finances section!
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa, sequi culpa. Iure quos reiciendis rem! Accusamus iusto commodi quo consectetur. Ipsum amet iure eligendi, sapiente dolor temporibus unde maiores id nulla illo quos repudiandae obcaecati, dolorem perferendis suscipit iste. Omnis ut soluta, ad possimus veritatis perspiciatis commodi sapiente esse! Enim.
-            </p>
-            <div class="placeholder">
-                <div class="ph-1"></div>
-                <div class="ph-2"></div>
-                <div class="ph-3"></div>
-                <div class="ph-4"></div>
-                <div class="ph-5"></div>
-                <div class="ph-6"></div>
-                <div class="ph-7"></div>
-                <div class="ph-8"></div>
-            </div>
+            <section id="hero_blocks" class="hero_blocks">
+                <div class="block-1">
+                    <h1>Your budget</h1>
+                </div>
+                <div class="block-2">
+                    <h1>Expenses</h1>
+                </div>
+                <div class="block-3">
+                    <h1>Income</h1>
+                </div>
+                <div class="block-4">
+                    <h1>Family</h1>
+                </div>
+            </section>
         </main>
+     
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
     <script src="../js/app_start.js"></script>
 </body>

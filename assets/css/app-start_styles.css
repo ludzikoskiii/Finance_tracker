@@ -19,9 +19,6 @@ body{
 body.sb-expanded{
     --sb-width: 12.5rem;
 }
-.app-sidebar{
-
-}
 p{
     margin-bottom: 1.5rem;
     font-weight: bold;
@@ -117,6 +114,17 @@ main{
     display: flex;
     align-items: center;
     gap: 0.625rem;
+}
+.hero_blocks{
+     display: grid;
+    grid-template-columns: 40% 40%;
+    grid-template-rows: 380px 380px;
+    grid-auto-rows: 300px;
+    gap: 1em;
+    margin: 1em;
+    border-radius: 24px;
+    background-color: #f0f3f5;
+    justify-content: center;
 }
 @media (min-width: 768px){
     main{
