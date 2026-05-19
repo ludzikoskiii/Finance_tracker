@@ -1,4 +1,4 @@
-import { validateRegister } from "../js/app_register-Validation.js";
+import { validateRegister } from "../../js/register/app_register-Validation.js";
 const loginForm = document.getElementById('login-form');
 loginForm.addEventListener("submit",async (e) => {
     e.preventDefault();
@@ -28,7 +28,7 @@ loginForm.addEventListener("submit",async (e) => {
     //Sprawdzenie czy uzytkownik o podanym adresie e-mail juz istnieje
     try{
     async function checkEmailExists() {
-        const responseGet = await fetch(`http://localhost/Finance_tracker-main/assets/php/app_register.php?email=${encodeURIComponent(loginEmail)}`);
+        const responseGet = await fetch(`http://localhost/Finance_tracker-main/assets/php/register/app_register.php?email=${encodeURIComponent(loginEmail)}`);
         const czyZawiera = await responseGet.json();
        
         if(czyZawiera.exists){
@@ -49,7 +49,7 @@ loginForm.addEventListener("submit",async (e) => {
     // Dodawanie uzytkownika
     try {
         const responsePost = await fetch(
-            "http://localhost/Finance_tracker-main/assets/php/app_register.php",
+            "http://localhost/Finance_tracker-main/assets/php/register/app_register.php",
             {
                 method: "POST",
                 headers: {

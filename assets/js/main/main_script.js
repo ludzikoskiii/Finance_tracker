@@ -24,5 +24,5 @@ typeLetter(); // start animacji
 //obsluga przycisku do login
 const btn = document.getElementById('btn_login');
 btn.addEventListener('click', () => {
-  window.location.href = "./login.html";
+  window.location.href = "../../html/all/login.html";
 })

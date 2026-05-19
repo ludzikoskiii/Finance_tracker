@@ -9,43 +9,40 @@
         @import url('https://fonts.googleapis.com/css2?family=Boldonse&family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&family=Open+Sans:ital,wght@0,520;1,520&display=swap');
         </style>
          <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=account_circle" />
-         <link rel="stylesheet" href="../css/register_styles.css">
+         <link rel="stylesheet" href="../../css/login/login_styles.css">
         <link rel="shortcut icon" href="../../img/logo_no_bg.png">
-        <script defer type="module" src="../js/app_register-Fetch.js"></script>
+        <script defer type="module" src="../../js/login/app_login-Fetch.js"></script>
      </head>
 <body>
     <section class="login-body">
         <div class="login-header">
-        <h1 class="login-title">Create an account</h1>
-        <p class="login-underTitle">Already have an account? <a href="login.html">Log in</a></p>
+        <h1 class="login-title">Welcome back to Finance tracker</h1>
+        <p class="login-underTitle">Track your money and family finances</p>
        </div>
-        <form action="" id="login-form" class="login-form">
-            <div class="block-name">
-            <p class="login-text full-width">Name</p>
-            <input type="text" id="login-name" class="input-size full-width">
-            <div class="block-0 wrong"></div>
-            </div>
-            <div class="block-email">
+        <form id="login-form" class="login-form  full-width">
+            <div class="block-login">
             <p class="login-text full-width">Email</p>
             <input type="email" id="login-email" class="input-size full-width">
-            <div class="block-1 wrong"></div>
-            </div>
+         <div class="block-0 wrong"></div>   
+        </div>
             <div class="block-password">
             <p class="login-text full-width">Password</p>
             <input type="password" id="login-password" class="input-size full-width">
-            <div class="block-2 wrong"></div>
+            <div class="block-1 wrong"></div>
             </div>
-            <div class="block-confirm">
-            <p class="login-text full-width">Confirm Password</p>
-            <input type="password" id="login-confirm-password" class="input-size full-width">
-            <div class="block-3 wrong"></div>
+            <div class="login-remember full-width">
+                <p class="login-remember-p">Remember sign in details</p>
+            <label class="login-switch">
+                <input type="checkbox">
+                <span class="slider round"></span>
+            </label>
             </div>
-           
             <div class="login-btns full-width">
-                <button type="submit" id="btn-register" class="login-btn">Sign up</button>
+                <button type="submit" id="btn-submit" class="login-btn">Log in</button>
+                <div class="login-separator">OR</div>
+                <button type="button" id="btn-register" class="sign-btn">Sign up</button>
             </div>
             </form>
         </section>
-    
 </body>
 </html>

@@ -1,8 +1,8 @@
-import { validateLogin } from "../js/app_login-Validation.js";
+import { validateLogin } from "../../js/login/app_login-Validation.js";
 const btn = document.getElementById("btn-register");
 
 btn.addEventListener('click', () => {
-    window.location.href = "./register.html";
+    window.location.href = "../../html/all/register.html";
 })
 const loginForm = document.getElementById('login-form');
 loginForm.addEventListener("submit",async (e) => {
@@ -25,7 +25,7 @@ loginForm.addEventListener("submit",async (e) => {
     if(result === true){
         
         
-          const responsePost = await fetch("../php/app_login.php",{
+          const responsePost = await fetch("../../php/log/app_login.php",{
             method: "POST",
             headers:{
                 "Content-Type":"application/json"
@@ -36,7 +36,7 @@ loginForm.addEventListener("submit",async (e) => {
 
            if (!data.error) {
 
-                window.location.href = "./app_start.html";
+                window.location.href = "../../html/app/app_start.html";
 
             } else {
 
