@@ -32,7 +32,8 @@ if($method == "POST"){
      $data = json_decode(file_get_contents("php://input"), true);
      $imie = $data["name"];
      $email = $data["email"];
-     $haslo = password_hash($data["password"], PASSWORD_DEFAULT);    
+     $password = $data["password"];
+     $haslo = password_hash($password, PASSWORD_DEFAULT);    
      if(empty($email)){
         echo json_encode([
             "success" => false,

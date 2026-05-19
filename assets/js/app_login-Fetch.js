@@ -23,12 +23,8 @@ loginForm.addEventListener("submit",async (e) => {
     // validateLogin(user,errorsArr);
     const result = validateLogin(user, errorsArr);
     if(result === true){
-        async function loadUserData() {
-            const responseGet = await fetch(`../php/app_login.php?email=${encodeURIComponent(user.email)}&haslo_hash=${encodeURIComponent(user.password)}`);
-            const data = await responseGet.json();
-           return data;
-        }
-        async function loginUser(){
+        
+        
           const responsePost = await fetch("../php/app_login.php",{
             method: "POST",
             headers:{
@@ -36,18 +32,17 @@ loginForm.addEventListener("submit",async (e) => {
             },
             body: JSON.stringify(user)
           });
+          const data = await responsePost.json();
+
+           if (!data.error) {
+
+                window.location.href = "./app_start.html";
+
+            } else {
+
+                console.log(data);
+
+            }
         }
-        const data = loadUserData()
     
-    if(data){
-        window.location.href = "./app_start.html";
-    }
-    
-    // if(data.success){
-    //     window.location.href = "./main.htm"
-    // }
-    
-    }else{
-        console.log("Dane niepoprawne, popraw błędy przed wysłaniem formularza");
-    }
-});
+});  

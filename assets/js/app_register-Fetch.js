@@ -40,7 +40,7 @@ loginForm.addEventListener("submit",async (e) => {
             return;
         }
     }
-    checkEmailExists();
+    await checkEmailExists();
 }   
     catch(err){
         console.log(err);
