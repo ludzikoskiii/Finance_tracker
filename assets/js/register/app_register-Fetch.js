@@ -22,7 +22,7 @@ loginForm.addEventListener("submit",async (e) => {
         blockPassword1: blockPassword,
         blockConfirmPassword1: blockConfirmPassword,
     }
-    validateRegister(user,errorsArr);
+    
     if(validateRegister(user,errorsArr)){
     
     //Sprawdzenie czy uzytkownik o podanym adresie e-mail juz istnieje

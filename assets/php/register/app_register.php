@@ -1,80 +1,29 @@
-<?php 
-header('Content-Type: application/json');
+<?php
+session_start();
+header("Content-Type: application/json");
 
-try{
-$dsn = "mysql:host=localhost;dbname=finance_tracker;charset=utf8mb4";
-$user = "root";
-$password = "";
-$pdo = new PDO($dsn, $user, $password,[
-    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
-]);
-$method = $_SERVER["REQUEST_METHOD"];
-if($method == "GET"){
-     
-     if(!isset($_GET["email"])){
-        echo json_encode([
-            "success" => false,
-            "message" => "Nie podano adresu e-mail"
-        ]);
-     }
-     $email = $_GET["email"];
-    $stmt=$pdo->prepare("SELECT * FROM uzytkownicy WHERE email = :email");
-    $stmt->execute(['email' => $email]);
+// Dodaj te nagłówki CORS
+header("Access-Control-Allow-Origin: http://127.0.0.1");
+header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
+header("Access-Control-Allow-Headers: Content-Type");
+header("Access-Control-Allow-Credentials: true");
 
-    $user = $stmt->fetch();
-
-    echo json_encode([
-        "exists" => $user ? true : false
-    ]);
+// Obsługa preflight (przeglądarka wysyła OPTIONS przed właściwym requestem)
+if ($_SERVER["REQUEST_METHOD"] === "OPTIONS") {
+    http_response_code(204);
     exit;
 }
-if($method == "POST"){
-     $data = json_decode(file_get_contents("php://input"), true);
-     $imie = $data["name"];
-     $email = $data["email"];
-     $password = $data["password"];
-     $haslo = password_hash($password, PASSWORD_DEFAULT);    
-     if(empty($email)){
-        echo json_encode([
-            "success" => false,
-            "message" => "Email jest wymagany"
-        ]);
 
-        exit;
-     }
-     if(!$data){
-        echo json_encode([
-            "success" => false,
-            "message" => "Brak danych"
-        ]);
-        exit;
-    }
-     
-$stmt=$pdo->prepare("INSERT INTO uzytkownicy (imie,email,haslo_hash,rola,data_rejestracji,aktywny) VALUES (:imie,:email,:haslo_hash,:rola,:data_rejestracji,:aktywny)");
-$stmt->execute([
-    'imie' => $imie,
-    'email' => $email,
-    'haslo_hash' =>  $haslo,
-    'rola' => 'user',
-    'data_rejestracji' => date("Y-m-d H:i:s"),
-    'aktywny' => 1
+require_once "../log/Database.php";
+require_once "../log/UserRepository.php";
+require_once "../log/AuthController.php";
 
-]);
-echo json_encode([
-        "success" => true,
-        "message" => "Rejestracja udana"
-    ]);
-    exit;
-}
-}
-catch (PDOException $e){
+$db             = new Database();
+$userRepository = new UserRepository($db->getConnection());
+$authController = new AuthController($userRepository);
 
-    echo json_encode([
-     "success" => false,
-     "error" => $e->getMessage()
-     ]);
-}
-
-
-
-?>
+match ($_SERVER["REQUEST_METHOD"]) {
+    "GET"    => $authController->checkEmail(),
+    "POST"   => $authController->register(),
+    default  => http_response_code(405)
+};
