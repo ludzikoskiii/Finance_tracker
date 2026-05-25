@@ -2,13 +2,12 @@
 session_start();
 header("Content-Type: application/json");
 
-// Dodaj te nagłówki CORS
 header("Access-Control-Allow-Origin: http://127.0.0.1");
 header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type");
 header("Access-Control-Allow-Credentials: true");
 
-// Obsługa preflight (przeglądarka wysyła OPTIONS przed właściwym requestem)
+
 if ($_SERVER["REQUEST_METHOD"] === "OPTIONS") {
     http_response_code(204);
     exit;
