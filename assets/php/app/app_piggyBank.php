@@ -11,12 +11,14 @@
         ]);
         exit;
     }
-    $stmt = $pdo->prepare("SELECT kwota FROM skarbonka_wplaty INNER JOIN uzytkownicy ON skarbonka_wplaty.id_uzytkownika = uzytkownicy.id WHERE email = :email;");
+    $stmt = $pdo->prepare("SELECT kwota, opis FROM skarbonka_wplaty INNER JOIN uzytkownicy ON skarbonka_wplaty.id_uzytkownika = uzytkownicy.id WHERE email = :email;");
     $stmt->execute([
         ':email' => $email
     ]);
     $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
     echo json_encode([
-        "piggyBank" => $data
+        "description" => $data[0]['opis'] ?? null,
+        "piggyBank" => $data[0]['kwota'] ?? null,
+        "message" => "Piggy Bank data loaded successfully"
     ]);
 ?>
