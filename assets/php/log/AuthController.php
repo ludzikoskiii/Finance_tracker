@@ -25,6 +25,7 @@ class AuthController {
         $_SESSION['imie']  = $user['imie'];
         $_SESSION['email'] = $user['email'];
         $_SESSION['rola']  = $user['rola'];
+        $_SESSION['id']    = $user['id'];
 
         echo json_encode(["error" => false, "imie" => $user['imie']]);
     }

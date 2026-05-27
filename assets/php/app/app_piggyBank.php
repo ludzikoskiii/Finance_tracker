@@ -2,7 +2,7 @@
     session_start();
     header("Content-Type: application/json");
     
-    require_once "../../database.php";
+    require_once "../Database.php";
 
     $email = $_SESSION['email'] ?? null;
     if(!$email){
@@ -11,14 +11,12 @@
         ]);
         exit;
     }
-    $stmt = $pdo->prepare("SELECT kwota, opis FROM skarbonka_wplaty INNER JOIN uzytkownicy ON skarbonka_wplaty.id_uzytkownika = uzytkownicy.id WHERE email = :email;");
-    $stmt->execute([
-        ':email' => $email
-    ]);
+    $stmt = $pdo->prepare("SELECT obecna_kwota, nazwa FROM skarbonka INNER JOIN uzytkownicy ON skarbonka.id_uzytkownika = uzytkownicy.id WHERE uzytkownicy.id = 1;");
+    $stmt->execute();
     $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
     echo json_encode([
-        "description" => $data[0]['opis'] ?? null,
-        "piggyBank" => $data[0]['kwota'] ?? null,
+        "description" => $data[0]['nazwa'] ?? null,
+        "piggyBank" => $data[0]['obecna_kwota'] ?? null,
         "message" => "Piggy Bank data loaded successfully"
     ]);
 ?>
