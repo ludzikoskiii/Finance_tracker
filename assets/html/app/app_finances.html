@@ -12,7 +12,7 @@
          <link rel="stylesheet" href="../../css/app/app-start_styles.css">
         <link rel="shortcut icon" href="../../../img/logo_no_bg.png">
        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body class="sb-expanded">
     <section class="app-sidebar">
@@ -21,7 +21,7 @@
                 <ul>
                      <li>
                         <div class="sidebar-brand">
-                            <img src="../../img/logo_no_bg.png" alt="" class="sidebar-logo">
+                            <img src="../../../img/logo_no_bg.png" alt="" class="sidebar-logo">
                             <span class="header_text">Finance<br>tracker</span>
                         </div>
                      </li>
@@ -46,7 +46,7 @@
                     <li>
                         <a href="./app_accounts.html">
                             <i class="bx bx-user"></i>
-                            <span>Accounts</span>
+                            <span>My account</span>
                         </a>
                     </li>
                     <li>
@@ -58,25 +58,29 @@
                 </ul>
             </nav>
         </aside>
-
         <main>
             <h1>Your Finances</h1>
              <section id="hero_blocks" class="hero_blocks">
-
                 </section>
-            <div class="placeholder">
-                <div class="ph-1"></div>
-                <div class="ph-2"></div>
-                <div class="ph-3"></div>
-                <div class="ph-4"></div>
-                <div class="ph-5"></div>
-                <div class="ph-6"></div>
-                <div class="ph-7"></div>
-                <div class="ph-8"></div>
-            </div>
+             <main>
+            <section id="hero_blocks" class="hero_blocks">
+                <div class="block-1" id="block-1">
+                    <canvas id="financeChart"></canvas>
+                </div>
+                <div class="block-2" id="block-2">
+                    <h1>Expenses</h1>
+                </div>
+                <div class="block-3" id="block-3">
+                    <h1>Piggy bank</h1>
+                </div>
+                <div class="block-4" id="block-4">
+                    <h1>Family</h1>
+                </div>
+            </section>
         </main>
     </section>
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
-    <script src="../js/app_start.js"></script>
+    <script src="../../js/app/app_start.js"></script>
+    <script src="../../js/finances/finances_chart_setup.js"></script>
 </body>
 </html>

@@ -11,24 +11,34 @@ async function init(){
     const family = await loadFamily();
 
     if(budget.budget){
-        const budgetCount = countMoney(budget.budget);
 
         const block1 = document.getElementById("block-1");
         const elBlock1 = document.createElement("div");
 
-        elBlock1.innerHTML = `<h2>${budgetCount}</h2>`;
+        elBlock1.innerHTML = `<h2>${budget.budget}</h2>`;
 
+        block1.appendChild(elBlock1);
+    }
+    else{
+        const block1 = document.getElementById("block-1");
+        const elBlock1 = document.createElement("div");
+        elBlock1.innerHTML = `<h2 style="color: red;">No budget found</h2>`;
         block1.appendChild(elBlock1);
     }
 
     if(budget.expenses){
-        const budgetCount = countMoney(budget.expenses);
 
         const block2 = document.getElementById("block-2");
         const elBlock2 = document.createElement("div");
 
-        elBlock2.innerHTML = `<h2>${budgetCount}</h2>`;
+        elBlock2.innerHTML = `<h2>${budget.expenses}</h2>`;
 
+        block2.appendChild(elBlock2);
+    }else
+    {
+        const block2 = document.getElementById("block-2");
+        const elBlock2 = document.createElement("div");
+        elBlock2.innerHTML = `<h2 style="color: red;">No expenses found</h2>`;
         block2.appendChild(elBlock2);
     }
 
@@ -41,6 +51,11 @@ async function init(){
         elBlock3.innerHTML = `<h2>${piggyBankCount}</h2>`;
 
         block3.appendChild(elBlock3);
+    }else{
+        const block3 = document.getElementById("block-3");
+        const elBlock3 = document.createElement("div");
+        elBlock3.innerHTML = `<h2 style="color: red;">Piggy bank is empty</h2>`;
+        block3.appendChild(elBlock3);
     }
     if(family.haveFamily !== undefined){
         
@@ -52,7 +67,7 @@ async function init(){
             <p>Budżet rodziny: ${family.familyBudget}</p>
             `;
         }else{
-            elBlock4.innerHTML = `<h2>Nie masz rodziny</h2>`;
+            elBlock4.innerHTML = `<h2 style="color: red;">No family found</h2>`;
         }
         block4.appendChild(elBlock4);
     }

@@ -6,24 +6,24 @@ header("Content-Type: application/json");
         $user = "root";
         $pass = "";
         $pdo = new PDO($dsn, $user, $pass);
-        $stmt=$pdo->prepare("SELECT SUM(kwota) as kwota FROM uzytkownicy INNER JOIN transakcje ON uzytkownicy.id = transakcje.id_uzytkownika WHERE email = :email AND typ='przychod'");
+        $stmt=$pdo->prepare("SELECT SUM(kwota) as kwota FROM uzytkownicy INNER JOIN transakcje ON uzytkownicy.id = transakcje.id_uzytkownika WHERE id_uzytkownika = :id_uzytkownika AND typ='przychod'");
         $stmt->execute([
-            ':email' => "jan@example.com"
+            ':id_uzytkownika' => $_SESSION['id']
         ]);
         $dataBudget = $stmt->fetch(PDO::FETCH_ASSOC);
-        $stmt=$pdo->prepare("SELECT kwota FROM uzytkownicy INNER JOIN transakcje ON uzytkownicy.id = transakcje.id_uzytkownika WHERE email = :email AND typ='wydatek'");
+        $stmt=$pdo->prepare("SELECT SUM(kwota) as kwota FROM uzytkownicy INNER JOIN transakcje ON uzytkownicy.id = transakcje.id_uzytkownika WHERE id_uzytkownika = :id_uzytkownika AND typ='wydatek'");
          $stmt->execute([
-            ':email' => "jan@example.com"
+            ':id_uzytkownika' => $_SESSION['id']
         ]);
         $dataExpenses = $stmt->fetch(PDO::FETCH_ASSOC);
-         $stmt=$pdo->prepare("SELECT kwota,opis FROM uzytkownicy INNER JOIN transakcje ON uzytkownicy.id = transakcje.id_uzytkownika WHERE email = :email AND typ='wydatek'");
+         $stmt=$pdo->prepare("SELECT kwota,opis FROM uzytkownicy INNER JOIN transakcje ON uzytkownicy.id = transakcje.id_uzytkownika WHERE id_uzytkownika = :id_uzytkownika AND typ='wydatek'");
          $stmt->execute([
-            ':email' => "jan@example.com"
+            ':id_uzytkownika' => $_SESSION['id']
         ]);
         $dataExpenses = $stmt->fetch(PDO::FETCH_ASSOC);
         echo json_encode([
-                "budget" => $dataBudget,
-                "expenses" => $dataExpenses
+                "budget" => $dataBudget['kwota'] ?? null,
+                "expenses" => $dataExpenses['kwota'] ?? null,
             ]
         );
 ?>  

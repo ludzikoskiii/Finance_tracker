@@ -13,11 +13,11 @@
 
     require_once "../Database.php";
 
-    $stmt = $pdo->prepare("SELECT rodzina FROM uzytkownicy WHERE id = 1;");
-    $stmt->execute();
+    $stmt = $pdo->prepare("SELECT rodzina FROM uzytkownicy WHERE id = :id;");
+    $stmt->execute(['id' => $_SESSION['id']]);
     $haveFamily = $stmt->fetch(PDO::FETCH_ASSOC);
-    $stmt = $pdo->prepare("SELECT nazwa, miesieczny_budzet FROM rodzina INNER JOIN uzytkownicy ON uzytkownicy.id = rodzina.id_wlasciciela WHERE uzytkownicy.id = 1;");
-    $stmt->execute();
+    $stmt = $pdo->prepare("SELECT nazwa, miesieczny_budzet FROM rodzina INNER JOIN uzytkownicy ON uzytkownicy.id = rodzina.id_wlasciciela WHERE uzytkownicy.id = :id;");
+    $stmt->execute(['id' => $_SESSION['id']]);
     $familyName = $stmt->fetch(PDO::FETCH_ASSOC);
     if(!$haveFamily){
         echo json_encode([
@@ -26,9 +26,9 @@
         exit();
     }
     echo json_encode([
-        "haveFamily" => $haveFamily['rodzina'],
-        "familyName" => $familyName['nazwa'],
-        "familyBudget" => $familyName['miesieczny_budzet'],
+        "haveFamily" => $haveFamily['rodzina'] ?? null,
+        "familyName" => $familyName['nazwa'] ?? null,
+        "familyBudget" => $familyName['miesieczny_budzet'] ?? null,
         "message" => "Family information loaded successfully"
     ]);
 ?>
