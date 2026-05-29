@@ -11,7 +11,8 @@
         ]);
         exit;
     }
-    $stmt = $pdo->prepare("SELECT obecna_kwota, nazwa FROM skarbonka INNER JOIN uzytkownicy ON skarbonka.id_uzytkownika = uzytkownicy.id WHERE uzytkownicy.id = 1;");
+    $stmt = $pdo->prepare("SELECT nazwa FROM skarbonka INNER JOIN uzytkownicy ON skarbonka.id_uzytkownika = uzytkownicy.id WHERE uzytkownicy.id = 1;");
+     $stmt = $pdo->prepare("SELECT SUM(kwota) as obecna_kwota FROM skarbonka_wplaty INNER JOIN uzytkownicy ON skarbonka_wplaty.id_skarbonki = uzytkownicy.id WHERE uzytkownicy.id = 1;");
     $stmt->execute();
     $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
     echo json_encode([

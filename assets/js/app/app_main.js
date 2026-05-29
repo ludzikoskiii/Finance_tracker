@@ -2,17 +2,13 @@ import { loadUserData } from "./dbFunctions/loadUserData.js";
 import { loadBudget } from "./dbFunctions/loadBudget.js";
 import { loadPiggyBank } from "./dbFunctions/loadPiggyBank.js";
 import { countMoney } from "./countMoney.js";
-loadUserData();
-loadBudget();
-loadPiggyBank();
-
-
+import { loadFamily } from "./dbFunctions/loadFamily.js";
 
 async function init(){
-
     const data = await loadUserData();
     const budget = await loadBudget();
     const piggyBank = await loadPiggyBank();
+    const family = await loadFamily();
 
     if(budget.budget){
         const budgetCount = countMoney(budget.budget);
@@ -46,7 +42,20 @@ async function init(){
 
         block3.appendChild(elBlock3);
     }
-
+    if(family.haveFamily !== undefined){
+        
+            const block4 = document.getElementById("block-4");
+            const elBlock4 = document.createElement("div");
+        if(parseInt(family.haveFamily) == 1){
+            elBlock4.innerHTML = `<h2>Masz rodzinę</h2>
+            <p>Nazwa rodziny: ${family.familyName}</p>
+            <p>Budżet rodziny: ${family.familyBudget}</p>
+            `;
+        }else{
+            elBlock4.innerHTML = `<h2>Nie masz rodziny</h2>`;
+        }
+        block4.appendChild(elBlock4);
+    }
     const welcomeUser = document.getElementById("welcome-user");
 
     welcomeUser.innerHTML = `
