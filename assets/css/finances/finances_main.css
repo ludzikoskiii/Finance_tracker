@@ -126,10 +126,11 @@ main{
     background-color: #f0f3f5;
     justify-content: center;
 }
-#financeChart {
-    background: #111;
-    border-radius: 20px;
-    padding: 20px;
+.addBudget-input{
+    border-radius: 5px;
+}
+.addBudget-btn{
+    border-radius: 5px;
 }
 @media (min-width: 768px){
     main{
