@@ -1,13 +1,31 @@
-import loadBudget from "../dbFunctions/loadBudget.js";
+import { loadBudget } from "./dbFunctions/loadBudget.js";
 const ctx = document.getElementById('financeChart');
 
+async function setupChart() {
+  try {
+    let arrDate = [];
+    let arrBudget = [];
+    const budgetData = await loadBudget();
+    console.log("Loaded budget data:", budgetData);
+     for(let i = 0; i <= budgetData.budget.length; i++){
+    arrBudget += `'${budgetData.budget[i].kwota}',`;
+    arrDate += `${budgetData.budget[i].data_transakcji},`;
+    return { arrDate, arrBudget };
+  }
+  
+  } catch (error) {
+    console.error("Error loading budget data:", error);
+  }
+  
+}
+const data = await setupChart();
 new Chart(ctx, {
   type: 'bar',
   data: {
-    labels: ['1', '2', '3', '4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30'],
+    labels: data.arrDate,
     datasets: [{
       label: 'Budget',
-      data: [12, 19, 3, 5],
+      data: data.arrBudget,
       borderColor: 'red',
       backgroundColor: 'rgba(0, 0, 255, 0.5)',
       tension: 0.3
