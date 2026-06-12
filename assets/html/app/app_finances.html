@@ -64,8 +64,9 @@
              <main>
             <section id="hero_blocks" class="hero_blocks">
                 <div class="block-1" id="block-1">
-                    <h1>Your Budget</h1>
-                    <form>
+                    <h1>This month</h1>
+                    <canvas id="financeChart"></canvas>
+                    <form id="addBudget-form" class="addBudget-form">
                         <input type="number" id="addBudget-input" class="addBudget-input" min="1">
                         <button type="submit" class="addBudget-btn">DODAJ</button>
                     </form>
@@ -82,8 +83,9 @@
             </section>
         </main>
     </section>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
-    <script src="../../js/app/app_start.js"></script>
-    <script src="../../js/finances/finances_chart_setup.js"></script>
+    <script src="../../js/finances/finances_main.js" type="module"></script>
+    <script src="../../js/finances/finances_chart_setup.js" type="module"></script>
 </body>
 </html>
