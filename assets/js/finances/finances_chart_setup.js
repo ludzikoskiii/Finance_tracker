@@ -38,7 +38,7 @@ const sortedDateArr = data.sortedDateArr;
 new Chart(ctx, {
   type: 'bar',
   data: {
-    labels: sortedDateArr.map(el =>  el[2]),
+    labels: sortedDateArr.map(el =>  el),
     datasets: [{
       label: 'Income',
       data: sortedLabelArr.map(el =>  el),
