@@ -11,8 +11,15 @@ require_once "../../database.php";
         ':id_uzytkownika' => $_SESSION['id']
     ]);
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    //pobieranie wydatkow
+    $stmt=$pdo->prepare("SELECT SUM(kwota) as kwota,data_transakcji FROM transakcje WHERE id_uzytkownika = :id_uzytkownika AND typ='wydatki' GROUP BY data_transakcji");
+    $stmt->execute([
+        ':id_uzytkownika' => $_SESSION['id']
+    ]);
+    $result2 = $stmt->fetchAll(PDO::FETCH_ASSOC);
     //zwrócenie danych o budżecie w formacie JSON
     echo json_encode([
-        "budget" => $result ?? null
+        "incomes" => $result ?? null,
+        "expenses" => $result2 ?? null,
     ]);
 ?>  
