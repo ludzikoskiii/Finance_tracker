@@ -6,14 +6,13 @@ require_once "../../database.php";
     //połączenie z bazą danych
     
     //pobranie danych o budżecie użytkownika
-    $stmt=$pdo->prepare("SELECT kwota,data_transakcji FROM uzytkownicy INNER JOIN transakcje ON uzytkownicy.id = transakcje.id_uzytkownika WHERE id_uzytkownika = :id_uzytkownika AND typ='przychod'");
+    $stmt=$pdo->prepare("SELECT SUM(kwota) as kwota,data_transakcji FROM transakcje WHERE id_uzytkownika = :id_uzytkownika AND typ='przychod' GROUP BY data_transakcji");
     $stmt->execute([
         ':id_uzytkownika' => $_SESSION['id']
     ]);
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
     //zwrócenie danych o budżecie w formacie JSON
     echo json_encode([
-        "budget" => $result ?? null,
-        "message" => "Budget data loaded successfully"
+        "budget" => $result ?? null
     ]);
 ?>  
