@@ -17,6 +17,7 @@ require_once "../../database.php";
         ':id_uzytkownika' => $_SESSION['id']
     ]);
     $result2 = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
     //zwrócenie danych o budżecie w formacie JSON
     echo json_encode([
         "incomes" => $result ?? null,
