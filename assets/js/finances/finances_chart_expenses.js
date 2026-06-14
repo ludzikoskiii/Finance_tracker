@@ -1,14 +1,14 @@
 //import funkcji loadBudget pobierajacej budzet z bazy
 import { loadBudget } from "./dbFunctions/loadBudget.js";
 //pobranie elementu w ktorym bedzie znajdowal sie wykres
-const ctx = document.getElementById('financeChart-income');
+const ctx = document.getElementById('financeChart-expenses');
 
 //funkcja sluzaca do wstawienia do tablicy danych pobranych z bazy
 async function setupChart() {
   try {
     const budgetData = await loadBudget();
     //deklaracja danych pobranych z bazy
-    const budget = budgetData.incomes;
+    const budget = budgetData.expenses;
     //sortowanie danych wedlug daty od najmniejszego
     let sortedData = budget.sort((a, b) => new Date(a.data_transakcji) - new Date(b.data_transakcji))    
     //deklaracja rozdzielonych tablic z danymi
@@ -36,7 +36,7 @@ new Chart(ctx, {
   data: {
     labels: data.map(el =>  el.data_transakcji),
     datasets: [{
-      label: 'Income',
+      label: 'Expenses',
       data: data.map(el =>  el.kwota),
       borderColor: 'red',
       backgroundColor: 'rgba(0, 0, 255, 0.5)',
