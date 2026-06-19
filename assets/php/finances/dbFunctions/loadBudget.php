@@ -11,7 +11,7 @@ require_once "../../database.php";
         ':id_uzytkownika' => $_SESSION['id']
     ]);
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    //pobieranie wydatkow
+    //pobieranie wydatkow i dat
     $stmt=$pdo->prepare("SELECT SUM(kwota) as kwota,data_transakcji FROM transakcje WHERE id_uzytkownika = :id_uzytkownika AND typ='wydatek' GROUP BY data_transakcji");
     $stmt->execute([
         ':id_uzytkownika' => $_SESSION['id']
