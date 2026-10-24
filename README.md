@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # FINANCE TRACKER
 
 Aplikacja do zarządzania swoim budżetem z możliwością połączenia ze sobą całęj grupy osób(rodziny).
